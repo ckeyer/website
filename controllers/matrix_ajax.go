@@ -14,12 +14,17 @@ type MatrixController struct {
 }
 
 func (this *MatrixController) Post() {
+	log.Println("is https: ", this.Ctx.Input.IsSecure())
 	wp := models.NewWebPage("首页Matrix")
 	wp.IncrViewCount()
-	log.Println("getString:", this.GetString("msgcode"))
 
-	msgcode, _ := strconv.Atoi(this.GetString("msgcode"))
-	switch msgcode {
+	resmag := &models.MatrixUpJson{}
+	if err := this.ParseForm(resmag); err != nil {
+		this.Ctx.WriteString(`{"msgcode":-1"data":"` + err.Error() + `"}`)
+		return
+	}
+
+	switch resmag.Msgcode {
 	case 1:
 		vals, err := models.GetAllMatrix()
 		if err != nil {
@@ -29,7 +34,6 @@ func (this *MatrixController) Post() {
 		jsonstr := vals.ToJson()
 		this.Ctx.WriteString(`{"msgcode":1,"data":` + jsonstr + `}`)
 	case 2:
-		resmag := &models.MatrixUpJson{}
 		resmag.H, _ = strconv.Atoi(this.GetString("h"))
 		resmag.W, _ = strconv.Atoi(this.GetString("w"))
 		resmag.Col, _ = strconv.Atoi(this.GetString("val"))

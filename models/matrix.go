@@ -14,11 +14,11 @@ const (
 type MatrixArray [MATRIX_H][MATRIX_W]int
 
 type MatrixUpJson struct {
-	Msgcode int                     `json:"msgcode"`
-	H       int                     `json:"h"`
-	W       int                     `json:"w"`
-	Col     int                     `json:"val"`
-	Data    [MATRIX_H][MATRIX_W]int `json:"matrix"`
+	Msgcode int                     `form:"msgcode",json:"msgcode"`
+	H       int                     `form:"h",json:"h"`
+	W       int                     `form:"w",json:"w"`
+	Col     int                     `form:"val",json:"val"`
+	Data    [MATRIX_H][MATRIX_W]int `form:"matrix",json:"matrix"`
 }
 
 var key_matrix = "matrix"
@@ -29,6 +29,7 @@ func initMatrixRedis() {
 			rc.Hset(key_matrix, fmt.Sprintf("%d_%d", i, j), []byte(fmt.Sprint((i+j)%5)))
 		}
 	}
+	log.Println("Redis Init Matrix Success.")
 }
 func GetAllMatrix() (vals *MatrixArray, err error) {
 	var b bool
@@ -49,6 +50,7 @@ func getAllToArray() (vals *MatrixArray, err error) {
 			b, err = rc.Hget(key_matrix, fmt.Sprintf("%d_%d", i, j))
 			if err != nil {
 				log.Println("error hget ", key_matrix, err.Error())
+				initMatrixRedis()
 				return
 			}
 			v, _ := strconv.Atoi(fmt.Sprintf("%s", b))
