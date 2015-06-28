@@ -2,8 +2,8 @@
 <html>
 
 <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
       <!--<meta http-equiv="refresh" content="0;url=https://www.ckeyer.com/">-->
-      <meta http-equiv="content-type" content="text/html; charset=utf-8" />
       <meta name="keywords" content="" />
       <meta name="description" content="" />
       <link rel="stylesheet" type="text/css" href="<% CUSTOM_URL_CSS %>matrix.css" />
@@ -81,6 +81,7 @@
                 <li onclick="window.location.href='/chat';"><i class="fa fa-coffee"></i><span>聊天室</span></li>
                 <li onclick="window.location.href='http://earth.ckeyer.com/';"><i class="fa fa-coffee"></i><span>地球</span></li>
                 <li onclick="window.location.href='http://ntop.ckeyer.com/';"><i class="fa fa-coffee"></i><span>流量监控</span></li>
+                <li onclick="window.location.href='/d/blacklist.txt';"><i class="fa fa-coffee"></i><span>我的黑名单</span></li>
                 <li onclick="window.location.href='/admin/blog';"><i class="fa fa-coffee"></i><span>管理</span></li>
         </ul>
 </div>
