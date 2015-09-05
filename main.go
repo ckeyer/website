@@ -31,8 +31,8 @@ func init() {
 
 func main() {
 	db_init()
-	config_init()
-	https_init()
+	server_init()
+	tpl_init()	
 	routers.Error_init()
 	beego.Run()
 }
