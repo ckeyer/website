@@ -17,7 +17,7 @@ func main() {
 	beego.Run()
 }
 
-func https_init() {
+func server_init() {
 	beego.EnableHttpTLS = true
 	// beego.HttpsPort = 443
 	beego.SessionOn = true
