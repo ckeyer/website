@@ -26,7 +26,7 @@ const (
 )
 
 var (
-	fh = http.FileServer(http.Dir("./static/"))
+	fh = http.FileServer(http.Dir("./view/"))
 )
 
 func NewM() *martini.ClassicMartini {
