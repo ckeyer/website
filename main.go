@@ -4,9 +4,6 @@ import (
 	"bytes"
 	"compress/gzip"
 	"fmt"
-	"github.com/go-martini/martini"
-	"github.com/martini-contrib/cors"
-	"github.com/martini-contrib/render"
 	"io"
 	"io/ioutil"
 	"mime"
@@ -18,6 +15,10 @@ import (
 	"runtime/pprof"
 	"strings"
 	"time"
+
+	"github.com/go-martini/martini"
+	"github.com/martini-contrib/cors"
+	"github.com/martini-contrib/render"
 )
 
 const (
@@ -79,7 +80,6 @@ type User struct {
 }
 
 func main() {
-
 	m := NewM()
 	m.Use(Auth)
 	headers := make(map[string]string)
